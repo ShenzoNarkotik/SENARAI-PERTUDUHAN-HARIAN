@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Senarai Pertuduhan Harian</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+    }
+    form, table {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="text"], input[type="date"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Senarai Pertuduhan Harian</h1>
+  <form id="pertuduhanForm">
+    <label>Tarikh:
+      <input type="date" id="tarikh" required />
+    </label>
+    <label>No IP:
+      <input type="text" id="noip" required />
+    </label>
+    <label>No Repot:
+      <input type="text" id="norepot" required />
+    </label>
+    <label>Seksyen:
+      <input type="text" id="sek" required />
+    </label>
+    <label>PP:
+      <input type="text" id="pp" required />
+    </label>
+    <label>B1:
+      <input type="text" id="b1" required />
+    </label>
+    <button type="submit">Tambah</button>
+  </form>
+
+  <table id="senaraiTable">
+    <thead>
+      <tr>
+        <th>Tarikh</th>
+        <th>No IP</th>
+        <th>No Repot</th>
+        <th>Seksyen</th>
+        <th>PP</th>
+        <th>B1</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('pertuduhanForm');
+    const table = document.getElementById('senaraiTable').querySelector('tbody');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const tarikh = document.getElementById('tarikh').value;
+      const noip = document.getElementById('noip').value;
+      const norepot = document.getElementById('norepot').value;
+      const sek = document.getElementById('sek').value;
+      const pp = document.getElementById('pp').value;
+      const b1 = document.getElementById('b1').value;
+
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${tarikh}</td>
+        <td>${noip}</td>
+        <td>${norepot}</td>
+        <td>${sek}</td>
+        <td>${pp}</td>
+        <td>${b1}</td>
+      `;
+      table.appendChild(row);
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
